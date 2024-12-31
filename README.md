@@ -30,9 +30,9 @@ cd InsightFlow
 Set up a Python virtual environment to manage dependencies:
 ```bash
 python -m venv env
-Activate the virtual environment:
-```
 
+```
+Activate the virtual environment:
 On Windows:
 ```bash
 source env/Scripts/activate
@@ -76,6 +76,8 @@ View the analysis result along with the chat history displayed below the input a
 - requirements.txt: List of dependencies required for the project.
 - .env: File for storing environment variables securely.
 
+## Demonstration
+https://youtu.be/U3UeG7rihoQ
 
 ## Notes
 Ensure you have a valid LangFlow APP_TOKEN before running the application.
