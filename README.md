@@ -4,7 +4,9 @@ An basic analytics module utilizing Langflow and DataStax to analyze engagement 
 
 ## Used Tools:
 ● DataStax Astra DB for database operations.
+
 ● Langflow for workflow creation and GPT integration.
+
 ● Streamlit for frontend access of Langflow.
 
 ## Features
