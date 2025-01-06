@@ -7,10 +7,10 @@ import os
 # Load environment variables
 load_dotenv()
 BASE_API_URL = "https://api.langflow.astra.datastax.com"
-LANGFLOW_ID = "fa896a7b-dc3e-44f3-92ed-0c8ae4ca55cd"
-FLOW_ID = "81a3643c-a3cc-4538-be28-3503515fc62d"
+LANGFLOW_ID = "19cdce06-0856-4984-910b-3df678dab0fb"
+FLOW_ID = "ccd9a8f8-f3a9-4fb7-9267-776d5bf61e67"
 APPLICATION_TOKEN = os.environ.get("APP_TOKEN")
-ENDPOINT = "analysis"
+ENDPOINT = "predict"
 
 # Function to run the flow
 def run_flow(message: str) -> dict:
@@ -33,9 +33,11 @@ def main():
         st.session_state["messages"] = []
 
     # Input field for the user
-    message = st.text_area("", placeholder="How can we assist you today?")
+    # Added a valid label for accessibility
+    message = st.text_area("Enter your message:", placeholder="How can we assist you today?", label_visibility="hidden")
 
     # Button to send the query
+    # Added a non-empty label
     if st.button("Generate Insights"):
         if not message.strip():
             st.error("Please enter a message")
