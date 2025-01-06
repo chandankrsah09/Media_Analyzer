@@ -1,20 +1,26 @@
 import requests
 import json
 import streamlit as st
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
 
 # Load environment variables
+env_path = find_dotenv()
+if not env_path:
+    raise FileNotFoundError("Could not find .env file. Please ensure it exists in the project root directory.")
+
 load_dotenv()
+
+# Debug: Check if APP_TOKEN is loaded
+APP_TOKEN = os.environ.get("APP_TOKEN")
+if not APP_TOKEN:
+    raise ValueError("Environment variable APP_TOKEN is not set. Please check your .env file or Streamlit secrets.")
+
+# Base configurations
 BASE_API_URL = "https://api.langflow.astra.datastax.com"
 LANGFLOW_ID = "19cdce06-0856-4984-910b-3df678dab0fb"
 FLOW_ID = "ccd9a8f8-f3a9-4fb7-9267-776d5bf61e67"
-APPLICATION_TOKEN = os.environ.get("APP_TOKEN")
 ENDPOINT = "predict"
-
-# Ensure APPLICATION_TOKEN is set
-if not APPLICATION_TOKEN:
-    raise ValueError("Environment variable APP_TOKEN is not set. Please check your .env file.")
 
 # Function to run the flow
 def run_flow(message: str) -> dict:
@@ -25,7 +31,7 @@ def run_flow(message: str) -> dict:
         "input_type": "chat",
     }
     headers = {
-        "Authorization": f"Bearer {APPLICATION_TOKEN}",
+        "Authorization": f"Bearer {APP_TOKEN}",
         "Content-Type": "application/json"
     }
 
@@ -51,7 +57,7 @@ def main():
     # Button to send the query
     if st.button("Generate Insights"):
         if not message.strip():
-            st.error("Please enter a message")
+            st.error("Please enter a message.")
             return
 
         try:
@@ -74,4 +80,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
