@@ -70,5 +70,5 @@ def main():
         st.markdown(f"*Bot:* {chat['bot']}")
         st.divider()
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
