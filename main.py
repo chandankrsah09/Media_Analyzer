@@ -66,9 +66,9 @@ def main():
     # Display a chat history
     st.subheader("Chat History")
     for chat in st.session_state["messages"]:
-        st.markdown(f"**You:** {chat['user']}")
-        st.markdown(f"**Bot:** {chat['bot']}")
+        st.markdown(f"*You:* {chat['user']}")
+        st.markdown(f"*Bot:* {chat['bot']}")
         st.divider()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
