@@ -1,9 +1,15 @@
 import requests
-import json
 import streamlit as st
 
+# Debugging: Check available secrets
+st.write("Available secrets:", st.secrets)
+
 # Access APP_TOKEN from Streamlit Secrets
-APP_TOKEN = st.secrets["astra"]["APP_TOKEN"]  # Use the secret key you set in Streamlit Secrets
+try:
+    APP_TOKEN = st.secrets["astra"]["APP_TOKEN"]  # Use the secret key you set in Streamlit Secrets
+except KeyError:
+    st.error("Streamlit secret 'astra' or 'APP_TOKEN' is not set. Check your secrets configuration.")
+    st.stop()
 
 if not APP_TOKEN:
     raise ValueError("Streamlit secret APP_TOKEN is not set. Please check your Streamlit secrets.")
