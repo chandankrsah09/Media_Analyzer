@@ -12,6 +12,10 @@ FLOW_ID = "ccd9a8f8-f3a9-4fb7-9267-776d5bf61e67"
 APPLICATION_TOKEN = os.environ.get("APP_TOKEN")
 ENDPOINT = "predict"
 
+# Ensure APPLICATION_TOKEN is set
+if not APPLICATION_TOKEN:
+    raise ValueError("Environment variable APP_TOKEN is not set. Please check your .env file.")
+
 # Function to run the flow
 def run_flow(message: str) -> dict:
     api_url = f"{BASE_API_URL}/lf/{LANGFLOW_ID}/api/v1/run/{ENDPOINT}"
@@ -20,8 +24,17 @@ def run_flow(message: str) -> dict:
         "output_type": "chat",
         "input_type": "chat",
     }
-    headers = {"Authorization": "Bearer " + APPLICATION_TOKEN, "Content-Type": "application/json"}
+    headers = {
+        "Authorization": f"Bearer {APPLICATION_TOKEN}",
+        "Content-Type": "application/json"
+    }
+
     response = requests.post(api_url, json=payload, headers=headers)
+
+    # Check for errors in the response
+    if response.status_code != 200:
+        raise ValueError(f"API request failed with status code {response.status_code}: {response.text}")
+
     return response.json()
 
 # Main function
@@ -33,11 +46,9 @@ def main():
         st.session_state["messages"] = []
 
     # Input field for the user
-    # Added a valid label for accessibility
-    message = st.text_area("Enter your message:", placeholder="How can we assist you today?", label_visibility="hidden")
+    message = st.text_area("Enter your message:", placeholder="How can we assist you today?")
 
     # Button to send the query
-    # Added a non-empty label
     if st.button("Generate Insights"):
         if not message.strip():
             st.error("Please enter a message")
@@ -52,14 +63,14 @@ def main():
             st.session_state["messages"].append({"user": message, "bot": response_text})
 
         except Exception as e:
-            st.error(str(e))
+            st.error(f"Error: {str(e)}")
 
     # Display chat history
     st.subheader("Chat History")
     for chat in st.session_state["messages"]:
         st.markdown(f"**You:** {chat['user']}")
         st.markdown(f"**Bot:** {chat['bot']}")
-        st.divider()  # Adds a divider for better readability
+        st.divider()
 
 if __name__ == "__main__":
     main()
