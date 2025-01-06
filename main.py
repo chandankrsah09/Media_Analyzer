@@ -71,7 +71,7 @@ def main():
         except Exception as e:
             st.error(f"Error: {str(e)}")
 
-    # Display chat history
+    # Display a chat history
     st.subheader("Chat History")
     for chat in st.session_state["messages"]:
         st.markdown(f"**You:** {chat['user']}")
