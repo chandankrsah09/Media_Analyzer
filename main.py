@@ -1,20 +1,12 @@
 import requests
 import json
 import streamlit as st
-from dotenv import load_dotenv, find_dotenv
-import os
 
-# Load environment variables
-env_path = find_dotenv()
-if not env_path:
-    raise FileNotFoundError("Could not find .env file. Please ensure it exists in the project root directory.")
+# Access APP_TOKEN from Streamlit Secrets
+APP_TOKEN = st.secrets["astra"]["APP_TOKEN"]  # Use the secret key you set in Streamlit Secrets
 
-load_dotenv()
-
-# Debug: Check if APP_TOKEN is loaded
-APP_TOKEN = os.environ.get("APP_TOKEN")
 if not APP_TOKEN:
-    raise ValueError("Environment variable APP_TOKEN is not set. Please check your .env file or Streamlit secrets.")
+    raise ValueError("Streamlit secret APP_TOKEN is not set. Please check your Streamlit secrets.")
 
 # Base configurations
 BASE_API_URL = "https://api.langflow.astra.datastax.com"
