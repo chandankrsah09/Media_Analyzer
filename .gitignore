@@ -1,5 +1,37 @@
-# Ignore Python virtual environments
+# Ignore virtual environment folder
 venv/
 
-# Ignore environment variables
+# Ignore environment variables file
 .env
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs
+*.log
+
+# Ignore cache files
+*.sqlite3
+
+# Ignore VS Code workspace settings
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+*.cover
+.coverage.*
+.cache
+
+# Ignore build and distribution files
+build/
+dist/
+*.egg-info/
