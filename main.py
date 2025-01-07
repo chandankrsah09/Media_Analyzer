@@ -3,7 +3,7 @@ import json
 import streamlit as st
 
 # Access APP_TOKEN from Streamlit Secrets
-APP_TOKEN = st.secrets["astra"]["APP_TOKEN"]  # Use the secret key you set in Streamlit Secrets
+APP_TOKEN = st.secrets["APP_TOKEN"]  # Use the secret key you set in Streamlit Secrets
 
 if not APP_TOKEN:
     raise ValueError("Streamlit secret APP_TOKEN is not set. Please check your Streamlit secrets.")
