@@ -5,6 +5,8 @@ A streamlined analytics module using Langflow and DataStax to assess engagement 
 DataStax Astra DB for database management and storage.
 Langflow for creating workflows and integrating GPT for analysis.
 Streamlit to provide a seamless frontend experience for LangFlow integration.
+![Uploading Screenshot 2025-01-07 173345.png…]()
+
 
 ## Key Features:
 Seamless integration with LangFlow and DataStax to provide real-time insights.
