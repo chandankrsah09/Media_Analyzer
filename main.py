@@ -46,7 +46,7 @@ def main():
     # Input field for the user
     message = st.text_area("Enter your message:", placeholder="How can we assist you today?")
 
-    # Button to send the query
+    # Button to send the query for client side 
     if st.button("Generate Insights"):
         if not message.strip():
             st.error("Please enter a message.")
